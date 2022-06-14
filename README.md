@@ -2,7 +2,7 @@
 
 This is a simple parser for tagged comments.
 
-It will turn a string like this: `@cached @alias:foo this comment is tagged!` into a dictionary like this:
+It will turn a string like this: `'@cached @alias:foo this comment is tagged!'` into a dictionary like this:
 
 ```json
 {
@@ -24,7 +24,7 @@ If you simply add a name, it will exist in the dictionary as a boolean set to tr
 
 If you add a colon, you can specify a different value.
 
-Finally, you can specify an array of values in parenthesis like so: `@config(12, "Some string value")`, which will result in the following dictionary:
+Finally, you can specify an array of values in parentheses like so: `'@config(12, "Some string value")'`, which will result in the following dictionary:
 
 ```json
 {
