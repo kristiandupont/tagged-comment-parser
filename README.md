@@ -24,4 +24,4 @@ The tags can appear as the first xor last part of the string.
 
 - `'@tag'` (no value specified): `tag` will have a value of `true`
 - `'@tag:something'` (value after colon): `tag` will be the string `'something'`
-- `'@tag(12, "some string")'` (parentheses with multiple values): `tag` will be the array `[12, "some string"]`
+- `'@tag(12, "some string")'` (parentheses with multiple values): `tag` will be the array `["12", "some string"]`
