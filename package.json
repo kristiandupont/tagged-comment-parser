@@ -8,5 +8,8 @@
   "license": "MIT",
   "devDependencies": {
     "vitest": "^0.15.0"
+  },
+  "scripts": {
+    "test": "vitest run"
   }
 }
