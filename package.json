@@ -2,7 +2,11 @@
   "name": "tagged-comment-parser",
   "version": "1.0.0",
   "main": "index.js",
+  "types": "index.d.ts",
   "repository": "git@github.com:kristiandupont/tagged-comment-parser.git",
   "author": "Kristian Dupont <kristian@kristiandupont.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "vitest": "^0.15.0"
+  }
 }
