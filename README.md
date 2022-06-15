@@ -2,9 +2,12 @@
 
 This is a simple parser for tagged comments.
 
-It will turn a string like this: `'@cached @alias:foo this comment is tagged!'` into a dictionary like this:
+```js
+import { parse } from "tagged-comment-parser";
 
-```json
+const result = parse("@cached @alias:foo this comment is tagged!");
+/*
+result:
 {
   "comment": "this comment is tagged!",
   "tags": {
@@ -12,24 +15,13 @@ It will turn a string like this: `'@cached @alias:foo this comment is tagged!'` 
     "alias": "foo"
   }
 }
+*/
 ```
 
-The tags can exist first or last in the comment.
+The tags can appear as the first xor last part of the string.
 
 ## Syntax
 
-Tags are always prefixed with an `@` character.
-
-If you simply add a name, it will exist in the dictionary as a boolean set to true.
-
-If you add a colon, you can specify a different value.
-
-Finally, you can specify an array of values in parentheses like so: `'@config(12, "Some string value")'`, which will result in the following dictionary:
-
-```json
-{
-  "tags": {
-    "config": [12, "Some string value"]
-  }
-}
-```
+- `'@tag'` (no value specified): `tag` will have a value of `true`
+- `'@tag:something'` (value after colon): `tag` will be the string `'something'`
+- `'@tag(12, "some string")'` (parentheses with multiple values): `tag` will be the array `[12, "some string"]`
