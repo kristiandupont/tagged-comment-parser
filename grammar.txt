@@ -1,11 +1,11 @@
-// PEG.js grammar
-// Build with https://pegjs.org/online
+// Peggy grammar
+// Build with https://peggyjs.org/online.html
 
 start
   = comment:text tags:tags { return { comment, tags } }
   / tags:tags comment:text { return { comment, tags } }
-  / tags:tags { return { tags } }
-  / comment:text { return { comment } }
+  / tags:tags { return { comment: undefined, tags } }
+  / comment:text { return { comment, tags: {} } }
 
 tags
   = tag:tag " " rest:tags { return { ...tag, ...rest }; }
@@ -17,7 +17,7 @@ tag
   / "@" name:identifier { return { [name]: true } }
 
 identifier
-  = letters:[a-zA-Z_]+ { return letters.join('') }
+  = letters:[a-zA-Z0-9_]+ { return letters.join('') }
 
 params
   = param:value [ ]* "," [ ]* rest:params { return [param, ...rest]; }
@@ -25,7 +25,8 @@ params
 
 value
   = "\"" content:[^\"]* "\"" { return content.join(''); }
-  / letters:[a-zA-Z0-9]+ { return letters.join(''); }
+  / "'" content:[^\']* "'" { return content.join(''); }
+  / content:[a-zA-Z0-9]+ { return content.join(''); }
 
 text
-  = [ ]*  letters:[^@]+ [ ]*  { return letters.join('') }
+  = content:[^@]+ { return content.join('').trim() }
