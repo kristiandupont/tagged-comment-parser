@@ -1,6 +1,3 @@
-// Peggy grammar
-// Build with https://peggyjs.org/online.html
-
 start
   = comment:text tags:tags { return { comment, tags } }
   / tags:tags comment:text { return { comment, tags } }
