@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { parse } from ".";
+import { parse, tryParse } from ".";
 
 describe("parse", () => {
   it("should return a simple string", () => {
@@ -42,6 +42,43 @@ describe("parse", () => {
       tags: {
         parameterized_tag: ["param1", "Second parameter", "3"],
       },
+    });
+  });
+});
+
+describe("tryParse", () => {
+  it("should work as expected with a non-tagged string", () => {
+    expect(tryParse("Hello")).toEqual({
+      comment: "Hello",
+      tags: {},
+    });
+  });
+
+  it("should work as expected with a tagged string", () => {
+    expect(tryParse("Organization member @fixed")).toEqual({
+      comment: "Organization member",
+      tags: { fixed: true },
+    });
+  });
+
+  it("should not throw when input has a syntax error", () => {
+    expect(tryParse("Organization member @broken-tag(")).toEqual({
+      comment: "Organization member @broken-tag(",
+      tags: {},
+    });
+  });
+
+  it("should return undefined when given null", () => {
+    expect(tryParse(null)).toEqual({
+      comment: undefined,
+      tags: {},
+    });
+  });
+
+  it("should return undefined when given undefined", () => {
+    expect(tryParse(undefined)).toEqual({
+      comment: undefined,
+      tags: {},
     });
   });
 });
