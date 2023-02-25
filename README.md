@@ -3,7 +3,7 @@
 This is a simple parser for tagged comments.
 
 ```js
-import { parse } from "tagged-comment-parser";
+import { parse, tryParse } from "tagged-comment-parser";
 
 const result = parse("@cached @alias:foo this comment is tagged!");
 /*
@@ -14,6 +14,16 @@ result:
     "cached": true,
     "alias": "foo"
   }
+}
+*/
+
+// If you want to avoid exceptions, use tryParse
+const result = tryParse(null);
+/*
+result:
+{
+  "comment": undefined,
+  "tags": {}
 }
 */
 ```
