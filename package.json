@@ -8,7 +8,7 @@
   "license": "MIT",
   "devDependencies": {
     "@kristiandupont/dev-deps": "^1.1.0",
-    "peggy": "2.0.1"
+    "peggy": "3.0.1"
   },
   "scripts": {
     "build": "peggy parser.pegjs",
