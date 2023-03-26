@@ -7,7 +7,7 @@
   "author": "Kristian Dupont <kristian@kristiandupont.com>",
   "license": "MIT",
   "devDependencies": {
-    "@kristiandupont/dev-deps": "^1.1.0",
+    "@kristiandupont/dev-deps": "^1.5.0",
     "peggy": "2.0.1"
   },
   "scripts": {
