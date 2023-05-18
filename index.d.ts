@@ -4,8 +4,8 @@
  * returns: { comment: "This is a comment that has tags", tags: { a: true, b: '123' }}
  */
 export declare const parse: (source: string) => {
-  comment?: string | undefined;
-  tags?: {
+  comment: string | undefined;
+  tags: {
     [index: string]: boolean | string | string[];
   };
 };
@@ -18,8 +18,8 @@ export declare const parse: (source: string) => {
  * returns: { comment: "This is a comment that has tags", tags: { a: true, b: '123' }}
  */
 export declare const tryParse: (source: string | null | undefined) => {
-  comment?: string | undefined;
-  tags?: {
+  comment: string | undefined;
+  tags: {
     [index: string]: boolean | string | string[];
   };
 };
