@@ -1,6 +1,6 @@
 {
   "name": "tagged-comment-parser",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "main": "index.js",
   "types": "index.d.ts",
   "repository": "git@github.com:kristiandupont/tagged-comment-parser.git",
