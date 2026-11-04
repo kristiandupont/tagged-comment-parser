@@ -7,11 +7,10 @@
   "author": "Kristian Dupont <kristian@kristiandupont.com>",
   "license": "MIT",
   "devDependencies": {
-    "@kristiandupont/dev-deps": "^2.32.0",
     "peggy": "4.2.0"
   },
   "scripts": {
     "build": "peggy parser.pegjs",
-    "test": "vitest run"
+    "test": "node --test"
   }
 }

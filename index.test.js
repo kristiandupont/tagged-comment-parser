@@ -1,82 +1,87 @@
-import { describe, expect, it } from "vitest";
+const { describe, it } = require("node:test");
+const assert = require("node:assert/strict");
 
-import { parse, tryParse } from ".";
+const { parse, tryParse } = require(".");
 
 describe("parse", () => {
   it("should return a simple string", () => {
-    expect(parse("Hello")).toEqual({ comment: "Hello", tags: {} });
+    assert.deepEqual(parse("Hello"), { comment: "Hello", tags: {} });
   });
 
   it("should extract tags", () => {
-    expect(parse("Organization member @fixed")).toEqual({
+    assert.deepEqual(parse("Organization member @fixed"), {
       comment: "Organization member",
       tags: { fixed: true },
     });
 
-    expect(parse("@fixed Organization member")).toEqual({
+    assert.deepEqual(parse("@fixed Organization member"), {
       comment: "Organization member",
       tags: { fixed: true },
     });
 
-    expect(parse("Organization member @order:1 @key:yellow")).toEqual({
+    assert.deepEqual(parse("Organization member @order:1 @key:yellow"), {
       comment: "Organization member",
       tags: { order: "1", key: "yellow" },
     });
 
-    expect(parse("Organization member @order:1 @order:2")).toEqual({
+    assert.deepEqual(parse("Organization member @order:1 @order:2"), {
       comment: "Organization member",
       tags: { order: "2" },
     });
 
-    expect(
-      parse("@stringified_tag:'\"Special\" characters in here! $@<> ...'")
-    ).toEqual({
-      comment: undefined,
-      tags: {
-        stringified_tag: '"Special" characters in here! $@<> ...',
-      },
-    });
+    assert.deepEqual(
+      parse("@stringified_tag:'\"Special\" characters in here! $@<> ...'"),
+      {
+        comment: undefined,
+        tags: {
+          stringified_tag: '"Special" characters in here! $@<> ...',
+        },
+      }
+    );
 
-    expect(parse('@parameterized_tag(param1, "Second parameter", 3)')).toEqual({
-      comment: undefined,
-      tags: {
-        parameterized_tag: ["param1", "Second parameter", "3"],
-      },
-    });
+    assert.deepEqual(
+      parse('@parameterized_tag(param1, "Second parameter", 3)'),
+      {
+        comment: undefined,
+        tags: {
+          parameterized_tag: ["param1", "Second parameter", "3"],
+        },
+      }
+    );
   });
 });
 
 describe("tryParse", () => {
   it("should work as expected with a non-tagged string", () => {
-    expect(tryParse("Hello")).toEqual({
+    assert.deepEqual(tryParse("Hello"), {
       comment: "Hello",
       tags: {},
     });
   });
 
   it("should work as expected with a tagged string", () => {
-    expect(tryParse("Organization member @fixed")).toEqual({
+    assert.deepEqual(tryParse("Organization member @fixed"), {
       comment: "Organization member",
       tags: { fixed: true },
     });
   });
 
   it("should not throw when input has a syntax error", () => {
-    expect(tryParse("Organization member @broken-tag(")).toEqual({
+    assert.deepEqual(tryParse("Organization member @broken-tag("), {
       comment: "Organization member @broken-tag(",
       tags: {},
     });
   });
 
   it("should return undefined when given null", () => {
-    expect(tryParse(null)).toEqual({
+    assert.deepEqual(tryParse(null), {
       comment: undefined,
       tags: {},
     });
   });
 
   it("should return undefined when given undefined", () => {
-    expect(tryParse(undefined)).toEqual({
+    assert.deepEqual(tryParse(undefined), {
       comment: undefined,
       tags: {},
     });
