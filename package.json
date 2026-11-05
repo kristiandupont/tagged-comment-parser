@@ -7,7 +7,7 @@
   "author": "Kristian Dupont <kristian@kristiandupont.com>",
   "license": "MIT",
   "devDependencies": {
-    "peggy": "4.2.0"
+    "peggy": "5.1.1"
   },
   "scripts": {
     "build": "peggy parser.pegjs",
